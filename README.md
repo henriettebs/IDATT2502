@@ -1,1 +1,1 @@
-# IDATT2502
+# IDATT2502 - Anvendt maskinlæring
