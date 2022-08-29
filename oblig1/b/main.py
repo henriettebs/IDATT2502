@@ -70,9 +70,3 @@ y = torch.tensor([[torch.min(y_tensor)], [torch.max(y_tensor)]])
 ax.plot(x.flatten(), y.flatten(), model.f(x, y).detach().flatten(), label='$f(x)=x1W1+x2W2+b$', color='orange')
 ax.legend()
 plt.show()
-
-
-# plt.plot(x_train_tensor, y_train_tensor, z_train_tensor, 'o', label='$(x^{(i)},y^{(i)},z^{(i)})$')
-# plt.xlabel('Lengde')
-# plt.ylabel('Vekt')
-# plt.show()
