@@ -35,7 +35,7 @@ class RegressionModel:
 
 model = RegressionModel()
 
-optimizer = torch.optim.SGD((model.b, model.W), 0.00000001)
+optimizer = torch.optim.SGD((model.b, model.W), 0.00000001) #Adam er en raskere optim funksjon
 for epoch in range(10000):
     model.loss(x_tensor, y_tensor).backward()
     optimizer.step()

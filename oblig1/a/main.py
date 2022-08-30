@@ -1,6 +1,7 @@
 import torch
 import matplotlib.pyplot as plt
-import csv
+import csv 
+#Vurder å bytt ut med pandas
 
 file = open('length_weight.csv')
 
@@ -32,9 +33,10 @@ class LinearRegressionModel:
 
 model = LinearRegressionModel()
 
-optimizer = torch.optim.SGD([model.W, model.b], 0.01)
-for epoch in range(1000):
-    model.loss(x_tensor, y_tensor).backward()
+optimizer = torch.optim.Adam([model.W, model.b], 0.0001) #Læringsrate = 0.0001
+for epoch in range(100000):
+    model.loss(x_tensor, y_tensor) \
+        .backward()
     optimizer.step()
     optimizer.zero_grad()
 

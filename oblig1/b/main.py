@@ -24,19 +24,19 @@ z_tensor = torch.tensor(z_train).reshape(-1,1)
 
 class LinearRegressionModel:
     def __init__(self):
-        self.W1 = torch.tensor([[0.0]], requires_grad=True)
+        self.W1 = torch.tensor([[0.0]], requires_grad=True) #Kan legge til en ekstra [0.0] istedenfor W2
         self.W2 = torch.tensor([[0.0]], requires_grad=True)
         self.b = torch.tensor([[0.0]], requires_grad=True)
 
     def f(self, x1, x2):
-        return x1 @ self.W1 + x2 @ self.W2 + self.b
+        return x1 @ self.W1 + x2 @ self.W2 + self.b # Da hadde W2 blitt fjernet her
 
     def loss(self, x1, x2, y):
         return torch.nn.functional.mse_loss(self.f(x1, x2), y)
     
 model = LinearRegressionModel()
 
-optimizer = torch.optim.SGD([model.W1, model.W2, model.b], 0.0001)
+optimizer = torch.optim.Adam([model.W1, model.W2, model.b], 0.0001)
 for epoch in range(100000):
     model.loss(x_tensor, y_tensor, z_tensor).backward()
     optimizer.step()
