@@ -20,28 +20,22 @@ class NOT:
     # Cross Entropy loss
     def loss(self, x, y):
         return torch.nn.functional.binary_cross_entropy_with_logits(self.logits(x), y)
-        # Similar to:
-        # return -torch.mean(y * torch.log(self.f(x)) +
-        # (1 - y) * torch.log(1 - self.f(x)))
 
 
 model = NOT()
 
-# Optimize: adjust W and b to minimize loss using stochastic gradient descent
+# Optimizer
 optimizer = torch.optim.SGD([model.b, model.W], 0.1)
 for epoch in range(10000):
-    model.loss(x_train, y_train).backward()  # Compute loss gradients
-    optimizer.step()  # Perform optimization by adjusting W and b,
-    # similar to:
-    # model.W -= model.W.grad * 0.01
-    # model.b -= model.b.grad * 0.01
-    optimizer.zero_grad()  # Clear gradients for next step
+    model.loss(x_train, y_train).backward()
+    optimizer.step()
+    optimizer.zero_grad()
 
 # Print model variables and loss
 print("W = %s, b = %s, loss = %s" % (model.W, model.b, model.loss(x_train, y_train)))
 
 # Visualize result
-plt.figure('oppgaveA')
+plt.figure('NOT-operatoren')
 plt.title('NOT')
 plt.table(cellText=[[0, 1], [1, 0]],
           colWidths=[0.1] * 3,
