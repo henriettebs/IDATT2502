@@ -31,8 +31,15 @@ class ConvolutionalNeuralNetworkModel(nn.Module):
         super(ConvolutionalNeuralNetworkModel, self).__init__()
 
         # Model layers (includes initialized model variables):
-        # self.logits = nn.Sequential(nn.Conv2d(1, 32, kernel_size=5, padding=2), nn.MaxPool2d(kernel_size=2), nn.Flatten(), nn.Linear(32 * 14 * 14, 10))
-        self.logits = nn.Sequential(nn.Conv2d(1, 32, kernel_size=5, padding=2), nn.MaxPool2d(kernel_size=2), nn.Conv2d(in_channels=32, out_channels=64, kernel_size=5, padding=2), nn.MaxPool2d(kernel_size=2), nn.Flatten(), nn.Linear(64 * 7 * 7, 10))
+        self.logits = nn.Sequential(nn.Conv2d(1, 32, kernel_size=5, padding=2), 
+                                    nn.MaxPool2d(kernel_size=2), 
+                                    nn.Conv2d(in_channels=32, out_channels=64, 
+                                                kernel_size=5, padding=2), 
+                                    nn.MaxPool2d(kernel_size=2), 
+                                    nn.Flatten(), 
+                                    nn.Linear(64 * 7 * 7, 1024),
+                                    nn.Flatten(),
+                                    nn.Linear(1*1024, 10))
 
     # Predictor
     def f(self, x):
